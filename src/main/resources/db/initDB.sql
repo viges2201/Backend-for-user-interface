@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS logins;
 DROP TABLE IF EXISTS users;
--- DROP SEQUENCE IF EXISTS global_seq;
+DROP SEQUENCE IF EXISTS global_seq;
 
--- CREATE SEQUENCE global_seq START 1;
+CREATE SEQUENCE global_seq START 1;
 
 
 CREATE TABLE users
 (
-  id                 SERIAL PRIMARY KEY NOT NULL,
+  id                 INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name               VARCHAR NOT NULL,
   lastName           VARCHAR NOT NULL,
   patronymic         VARCHAR NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE users
   comments           VARCHAR NOT NULL
 );
 
-CREATE TABLE logins
+/*CREATE TABLE logins
 (
   user_id SERIAL NOT NULL PRIMARY KEY UNIQUE REFERENCES users(id),
   login    VARCHAR ,
@@ -25,4 +25,4 @@ CREATE TABLE logins
   name VARCHAR,
   lastName VARCHAR,
   patronymic VARCHAR
-);
+);*/
