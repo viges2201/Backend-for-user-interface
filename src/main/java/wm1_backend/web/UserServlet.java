@@ -72,6 +72,7 @@ public class UserServlet extends HttpServlet {
             if (request.getParameter("id").isEmpty()) {
                 userController.create(user);
             } else {
+                user.setId(Integer.parseInt(request.getParameter("id")));
                 userController.update(user);
             }
             response.sendRedirect("users");
