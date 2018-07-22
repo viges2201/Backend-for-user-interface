@@ -9,7 +9,6 @@ public interface UserRepository {
 
     void delete(int id);
 
-    // null if not found
     User get(int id);
 
     List getAll();

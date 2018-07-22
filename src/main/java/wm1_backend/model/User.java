@@ -40,7 +40,12 @@ public class User {
     public User() {
     }
 
-    public User(String name, String lastName, String patronymic, Integer amountOfInvestment, Integer amountOfRisk, Integer term, String comments) {
+    public User(Integer id) {
+        this.id = id;
+    }
+
+    public User(Integer id, String name, String lastName, String patronymic, Integer amountOfInvestment, Integer amountOfRisk, Integer term, String comments) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.patronymic = patronymic;
@@ -48,6 +53,10 @@ public class User {
         this.amountOfRisk = amountOfRisk;
         this.term = term;
         this.comments = comments;
+    }
+
+    public User(String name, String lastName, String patronymic, Integer amountOfInvestment, Integer amountOfRisk, Integer term, String comments) {
+        this(null, name, lastName, patronymic, amountOfInvestment, amountOfRisk, term, comments);
     }
 
     public Integer getId() {
@@ -112,10 +121,6 @@ public class User {
 
     public void setComments(String comments) {
         this.comments = comments;
-    }
-
-    public User(Integer id) {
-        this.id = id;
     }
 
     public boolean isNew() {

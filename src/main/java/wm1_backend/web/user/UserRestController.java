@@ -30,20 +30,11 @@ public class UserRestController {
     }
 
     public void delete(int id) {
-        try {
-            userService.delete(id);
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
+        userService.delete(id);
     }
-    public User getById(int id){
-        try {
-            User user = userService.get(id);
-            return user;
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
+
+    public User getById(int id) {
+        return userService.get(id);
     }
 
     public List<User> getFilterList(int amountOfInvestment, int amountOfRisk) {

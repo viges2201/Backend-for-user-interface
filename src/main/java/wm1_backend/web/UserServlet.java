@@ -41,7 +41,7 @@ public class UserServlet extends HttpServlet {
             case "create":
             case "update":
                 final User user = "create".equals(action) ?
-                        new User() :
+                        new User("","","",0,0,0,"") :
                         userController.getById(getId(request));
                 request.setAttribute("user", user);
                 request.getRequestDispatcher("/userForm.jsp").forward(request, response);
@@ -60,7 +60,8 @@ public class UserServlet extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null) {
             User user = new User(
-                    request.getParameter(request.getParameter("name")),
+//                    Integer.parseInt(request.getParameter("id")),
+                    request.getParameter("name"),
                     request.getParameter("lastName"),
                     request.getParameter("patronymic"),
                     Integer.parseInt(request.getParameter("amountOfInvestment")),
@@ -75,6 +76,12 @@ public class UserServlet extends HttpServlet {
             }
             response.sendRedirect("users");
 
+        } else if ("filter".equals(action)) {
+            int amountOfInvestment = Integer.parseInt(request.getParameter("amountOfInvestment"));
+            int amountOfRisk = Integer.parseInt(request.getParameter("amountOfRisk"));
+
+            request.setAttribute("users", userController.getFilterList(amountOfInvestment, amountOfRisk));
+            request.getRequestDispatcher("/users.jsp").forward(request, response);
         } else if ("filter".equals(action)) {
             int amountOfInvestment = Integer.parseInt(request.getParameter("amountOfInvestment"));
             int amountOfRisk = Integer.parseInt(request.getParameter("amountOfRisk"));
