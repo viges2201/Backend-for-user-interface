@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import wm1_backend.model.User;
 import wm1_backend.util.UserUtil;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,6 +48,7 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> getAll() {
         Session session = sessionFactory.getCurrentSession();
         List<User> resultList = session.createQuery("from User").getResultList();
+        if (resultList.isEmpty()) return Collections.emptyList();
         return resultList.stream()
                 .sorted(Comparator.comparing(User::getName))
                 .collect(Collectors.toList());

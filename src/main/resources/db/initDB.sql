@@ -19,9 +19,10 @@ CREATE TABLE users
 
 CREATE TABLE logins
 (
-  user_id SERIAL NOT NULL,
-  login    VARCHAR,
+  user_id SERIAL NOT NULL PRIMARY KEY UNIQUE REFERENCES users(id),
+  login    VARCHAR ,
   password    VARCHAR,
-  CONSTRAINT user_login_idx UNIQUE (user_id, login),
-  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+  name VARCHAR,
+  lastName VARCHAR,
+  patronymic VARCHAR
 );
